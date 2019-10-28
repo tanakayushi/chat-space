@@ -11,7 +11,46 @@ Things you may want to cover:
 
 * Configuration
 
-* Database creation
+* chat-space DB設計
+## usersテーブル
+|column|type|options|
+|------|----|-------|
+|email|string|null: false|
+|password|string|null: false|
+|nickname|string|null: false, index:true|
+### Association
+- has_many :user_gruops
+- has_many :groups, through: :user_gruops
+- has_many :chats
+
+## gruopsテーブル
+|column|type|options|
+|------|----|-------|
+|name|string|null: false|
+### Association
+- has_many :user_gruops
+- has_many :users, through: :user_gruops
+- has_many :chats
+
+## user_gruopsテーブル
+|column|type|options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :gruop
+
+## chatsテーブル
+|column|type|options|
+|------|----|-------|
+|body|text||
+|image|text||
+|user_id|references|null: false, foreign_key: true|
+|gruop_id|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :gruop
 
 * Database initialization
 
@@ -22,3 +61,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
