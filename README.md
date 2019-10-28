@@ -19,14 +19,16 @@ Things you may want to cover:
 |password|string|null: false|
 |nickname|string|null: false, index:true|
 ### Association
+- has_many :user_gruops
 - has_many :groups, through: :user_gruops
 - has_many :chats
 
 ## gruopsテーブル
 |column|type|options|
 |------|----|-------|
-|name|string||
+|name|string|null: false|
 ### Association
+- has_many :user_gruops
 - has_many :users, through: :user_gruops
 - has_many :chats
 
